@@ -131,3 +131,42 @@ def test_hypothesis_report(tmp_path):
     summary = reporter.summary()
     assert summary["total"] == 1
     assert summary["by_tier"]["high"] == 1
+
+
+def test_clinical_trial_predictor():
+    from gwas_loop.translational.clinical_trial import ClinicalTrialPredictor
+    import pandas as pd
+
+    predictor = ClinicalTrialPredictor()
+    targets = pd.DataFrame({
+        "gene_id": ["PCSK9", "MYSTERY"],
+        "disease": ["CAD", "T2D"],
+        "drug": ["Evolocumab", "Unknown"],
+        "finemapping_pip": [0.95, 0.1],
+        "coloc_h4": [0.88, 0.05],
+        "direction_concordant": [True, False],
+        "lof_intolerance": [0.95, 0.1],
+        "has_human_lof_phenotype": [1, 0],
+        "tractability_score": [0.9, 0.2],
+    })
+    preds = predictor.predict(targets)
+    assert len(preds) == 2
+    assert preds[0].genetic_support_tier == "high"
+    assert preds[0].predicted_success_probability > preds[1].predicted_success_probability
+    assert "strong_finemapping" in preds[0].key_drivers
+
+
+def test_clinical_trial_summary():
+    from gwas_loop.translational.clinical_trial import ClinicalTrialPredictor
+    import pandas as pd
+
+    predictor = ClinicalTrialPredictor()
+    targets = pd.DataFrame({
+        "gene_id": ["PCSK9"], "disease": ["CAD"], "drug": ["Evo"],
+        "finemapping_pip": [0.9], "coloc_h4": [0.8],
+        "direction_concordant": [True], "lof_intolerance": [0.9],
+    })
+    preds = predictor.predict(targets)
+    summary = predictor.summary(preds)
+    assert len(summary) == 1
+    assert "P(success)" in summary.columns
