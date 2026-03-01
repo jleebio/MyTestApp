@@ -132,7 +132,27 @@ class ClinicalTrialPredictor:
         return results
 
     def _classify_genetic_support(self, row) -> str:
-        pip = float(row.get("finemapping_pip", 0))
+        """Classify genetic support tier.
+
+        Uses pre-computed GTCS tier if available, otherwise computes from components.
+        """
+        # Use pre-computed tier from GTCS if available
+        tier = str(row.get("genetic_evidence_tier", ""))
+        if tier in ("high", "medium", "low"):
+            return tier
+
+        # Use GTCS score directly if available
+        gtcs = float(row.get("gtcs_score", 0))
+        if gtcs > 0:
+            if gtcs >= 0.7:
+                return "high"
+            elif gtcs >= 0.4:
+                return "medium"
+            elif gtcs > 0:
+                return "low"
+
+        # Fall back to component-level computation
+        pip = float(row.get("finemapping_pip", row.get("pip", 0)))
         h4 = float(row.get("coloc_h4", 0))
         concordant = bool(row.get("direction_concordant", False))
         lof = float(row.get("lof_intolerance", 0))

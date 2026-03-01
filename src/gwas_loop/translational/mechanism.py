@@ -117,10 +117,43 @@ class MechanismInference:
         return best, confidence, evidence
 
     def _infer_direction(self, group: pd.DataFrame) -> str:
+        """Infer direction of effect from multiple evidence sources.
+
+        Priority: eQTL beta > GWAS beta + variant consequence > unknown
+        For coding variants with damaging predictions = loss-of-function.
+        """
+        # 1. eQTL evidence (most direct)
         if "eqtl_beta" in group.columns:
             mean_beta = group["eqtl_beta"].mean()
             if mean_beta > 0.05:
                 return "gain"
             elif mean_beta < -0.05:
                 return "loss"
+
+        # 2. GWAS beta + variant annotation
+        if "consequence" in group.columns:
+            csq = group["consequence"].iloc[0] if len(group) > 0 else ""
+            lof_consequences = {
+                "frameshift_variant", "stop_gained", "splice_donor_variant",
+                "splice_acceptor_variant",
+            }
+            damaging_consequences = {"missense_variant"} | lof_consequences
+
+            if csq in damaging_consequences:
+                is_damaging = csq in lof_consequences
+                if "polyphen" in group.columns and not is_damaging:
+                    is_damaging |= group["polyphen"].iloc[0] in ("probably_damaging", "possibly_damaging")
+                if "sift" in group.columns and not is_damaging:
+                    is_damaging |= group["sift"].iloc[0] == "deleterious"
+                if is_damaging:
+                    return "loss"
+
+        # 3. Expression z-score
+        if "expression_z" in group.columns:
+            expr_z = group["expression_z"].mean()
+            if expr_z < -1.5:
+                return "loss"
+            elif expr_z > 1.5:
+                return "gain"
+
         return "unknown"
