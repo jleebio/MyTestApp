@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "GWAS Self-Improving Research Loop"
+abstract: "An autonomous framework for gene prioritization and therapeutic target discovery from GWAS summary statistics."
+authors:
+  - family-names: Lee
+    given-names: Jeongah
+    alias: jleebio
+repository-code: "https://github.com/jleebio/MyTestApp"
+license: "SEE LICENSE FILE"
+version: "0.1.0"
+date-released: "2026-03-01"
+keywords:
+  - GWAS
+  - gene prioritization
+  - drug repurposing
+  - translational genomics
+  - machine learning
+  - computational genetics

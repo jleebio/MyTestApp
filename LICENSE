@@ -1,0 +1,45 @@
+Academic Citation License v1.0
+
+Copyright (c) 2026 Jeongah Lee (jleebio)
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to use, copy, modify, merge, and distribute the Software, subject to the
+following conditions:
+
+1. CITATION REQUIREMENT: Any publication, preprint, thesis, report,
+   presentation, or derivative work that uses this Software, in whole
+   or in part, or is based on results produced by this Software, MUST
+   cite the following:
+
+   Lee, J. (2026). GWAS Self-Improving Research Loop: An Autonomous
+   Framework for Gene Prioritization and Therapeutic Target Discovery.
+   GitHub: https://github.com/jleebio/MyTestApp
+
+   BibTeX:
+   @software{lee2026gwas,
+     author = {Lee, Jeongah},
+     title = {GWAS Self-Improving Research Loop: An Autonomous Framework
+              for Gene Prioritization and Therapeutic Target Discovery},
+     year = {2026},
+     url = {https://github.com/jleebio/MyTestApp}
+   }
+
+2. ATTRIBUTION: The above copyright notice, this permission notice, and
+   the citation requirement shall be included in all copies or substantial
+   portions of the Software.
+
+3. ACADEMIC USE: For academic and research purposes, the Software may be
+   freely used, modified, and distributed provided the citation requirement
+   is met.
+
+4. COMMERCIAL USE: Commercial use requires prior written permission from
+   the copyright holder. Contact: jleebio on GitHub.
+
+5. NO WARRANTY: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+   KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+   IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+   CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+   TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+   SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

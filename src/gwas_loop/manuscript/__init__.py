@@ -1,0 +1,1 @@
+"""Manuscript generation utilities."""
