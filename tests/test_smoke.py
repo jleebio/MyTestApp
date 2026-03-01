@@ -1,15 +1,15 @@
-"""Smoke tests to verify project structure."""
+"""Smoke tests for all modules."""
 import importlib
 
-def test_package_imports():
+def test_all_imports():
     modules = [
-        "gwas_loop",
-        "gwas_loop.benchmark",
-        "gwas_loop.failure_detection",
-        "gwas_loop.hypothesis",
-        "gwas_loop.prototyping",
-        "gwas_loop.evaluation",
-        "gwas_loop.memory",
+        "gwas_loop", "gwas_loop.benchmark.runner",
+        "gwas_loop.failure_detection.detector",
+        "gwas_loop.hypothesis.generator",
+        "gwas_loop.prototyping.builder",
+        "gwas_loop.evaluation.evaluator",
+        "gwas_loop.memory.registry",
+        "gwas_loop.loop",
     ]
     for mod in modules:
         importlib.import_module(mod)

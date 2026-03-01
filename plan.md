@@ -8,6 +8,6 @@
 ## 📋 Roadmap
 - [DONE] Initialize project structure (2026-03-01)
 - [DONE] Configure remote GitHub URL with token
-- [TODO] Create initial application boilerplate
-- [TODO] Set up automated test script (`npm test` or equivalent)
-- [TODO] Perform first autonomous push to GitHub
+- [DONE] Create initial application boilerplate (2026-03-01) — Python package, 6 modules, pytest
+- [DONE] Set up automated test script — pytest, 2/2 passing
+- [DONE] Perform first autonomous push to GitHub (2026-03-01)
